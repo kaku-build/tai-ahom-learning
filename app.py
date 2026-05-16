@@ -5,9 +5,10 @@ import google.generativeai as genai
 st.set_page_config(page_title="Tai Ahom Learning Platform", page_icon="🛕", layout="wide")
 
 # --- GEMINI AI SETUP ---
+# আপোনাৰ আচল API Key টো ইয়াত ছেট কৰা হৈছে
 API_KEY = "AIzaSyA6D895wPbpD69FEaV8AfMKcR7YvadVxks" 
 
-if API_KEY and API_KEY != "আপোনাৰ_GEMINI_API_KEY_ইয়াত_পেষ্ট_কৰক":
+if API_KEY and API_KEY != "AIzaSyA6D895wPbpD69FEaV8AfMKcR7YvadVxks":
     genai.configure(api_key=API_KEY)
 else:
     st.error("অনুগ্ৰহ কৰি সঠিক Gemini API Key টো ব্যৱহাৰ কৰক!")
@@ -58,7 +59,7 @@ if choice == "🛕 টাই আহোম এআই দোভাষী (AI Trans
         if user_query:
             with st.spinner("আমাৰ AI দোভাষীয়ে চিন্তা কৰি আছে..."):
                 try:
-                    # ইয়াতে আমি 'models/gemini-1.5-flash' বুলি নামটো সঠিক ফৰ্মেটত দিছোঁ
+                    # Calling Gemini Model
                     model = genai.GenerativeModel(
                         model_name="models/gemini-1.5-flash",
                         system_instruction=SYSTEM_INSTRUCTION
@@ -88,6 +89,7 @@ elif choice == "🔤 আখৰ পৰিচয় (Alphabets)":
     for i, let in enumerate(letters):
         with cols[i]:
             st.markdown(f"<p class='ahom-text'>{let['char']}</p>", unsafe_allow_html=True)
+            # ইয়াত unsafe_allow_html কৰা হৈছে যাতে এৰৰ নাহে
             st.markdown(f"<p style='text-align:center;'><b>উচ্চাৰণ:</b> {let['name']}</p>", unsafe_allow_html=True)
 
 # --- OPTION 3: DICTIONARY ---
