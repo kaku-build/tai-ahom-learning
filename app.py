@@ -2,18 +2,16 @@ import streamlit as st
 import google.generativeai as genai
 
 # --- PAGE CONFIGURATION ---
-st.set_title = "Tai Ahom Learning Platform with AI"
 st.set_page_config(page_title="Tai Ahom Learning Platform", page_icon="🛕", layout="wide")
 
 # --- GEMINI AI SETUP ---
-# ইয়াত আপোনাৰ আচল API Key টো বহুবাব লাগিব
-# সুৰক্ষাৰ বাবে আমি ইয়াক streamlit secrets ত ৰাখিব পাৰোঁ, এতিয়াৰ বাবে ডাইৰেক্ট চেক কৰিবলৈ দিছোঁ
+# আপোনাৰ আচল API Key টো ইয়াত ছেট কৰি দিয়া হৈছে
 API_KEY = "AIzaSyA6D895wPbpD69FEaV8AfMKcR7YvadVxks" 
 
-if API_KEY != "আপোনাৰ_GEMINI_API_KEY_ইয়াত_পেষ্ট_কৰক":
+if API_KEY and API_KEY != "AIzaSyA6D895wPbpD69FEaV8AfMKcR7YvadVxks":
     genai.configure(api_key=API_KEY)
 else:
-    st.error("অনুগ্ৰহ কৰি কোডৰ ভিতৰত আপোনাৰ আচল Gemini API Key টো বহুবাই লওক!")
+    st.error("অনুগ্ৰহ কৰি সঠিক Gemini API Key টো ব্যৱহাৰ কৰক!")
 
 # --- GOOGLE FONT (Noto Serif Ahom) & CSS ---
 st.markdown("""
@@ -31,7 +29,7 @@ st.markdown("""
     font-weight: bold;
 }
 </style>
-""", unsafe_with_html=True)
+""", unsafe_allow_html=True)
 
 # --- SIDEBAR MENU ---
 st.sidebar.title("মেনু (Menu)")
@@ -42,7 +40,6 @@ choice = st.sidebar.radio("ক’লৈ যাব খোজে?", [
 ])
 
 # --- SYSTEM PROMPT FOR AI ---
-# এই প্ৰম্পটটোৱে এআইক বুজাব যে সি কেনেকৈ উত্তৰ দিব লাগিব
 SYSTEM_INSTRUCTION = """
 You are 'AxomAI Tai-Ahom Translator', an expert in Tai-Ahom language, script, and culture. 
 Your job is to help users learn Tai-Ahom. When a user asks a question in Assamese or English, 
@@ -55,7 +52,7 @@ if choice == "🛕 টাই আহোম এআই দোভাষী (AI Trans
     st.markdown("<h1 class='title-text'>🛕 টাই আহোম এআই দোভাষী</h1>", unsafe_with_html=True)
     st.write("অসমীয়া বা ইংৰাজীত যিকোনো বাক্য লিখক, আমাৰ AI-এ তাক টাই আহোম ভাষালৈ অনুবাদ কৰি বুজাই দিব!")
     
-    # User input input box
+    # User input box
     user_query = st.text_input("আপুনি কি জানিব খোজে ইয়াতে টাইপ কৰক:", placeholder="যেনে: মই ভাত খালোঁ ইয়াক কি বুলি ক’ব?")
     
     if st.button("অনুবাদ কৰক (Translate)"):
@@ -73,15 +70,14 @@ if choice == "🛕 টাই আহোম এআই দোভাষী (AI Trans
                     st.success("উত্তৰ সাজু:")
                     st.write(response.text)
                 except Exception as e:
-                    st.error(f"এৰৰ আহিছে কাকু! হয়তো API Key টো ভুল হৈছে। সবিশেষ: {e}")
+                    st.error(f"এৰৰ আহিছে কাকু! হয়তো API Key বা নেটৱৰ্কৰ সমস্যা হৈছে। সবিশেষ: {e}")
         else:
-            st.warning("অনুগ্ৰহ কৰি কিবা এটা টাইপ কৰক!")
+            st.warning("অনুগ্ৰহ কৰি কিবা Resume বা বাক্য টাইপ কৰক!")
 
 # --- OPTION 2: ALPHABETS ---
 elif choice == "🔤 আখৰ পৰিচয় (Alphabets)":
     st.markdown("<h1 class='title-text'>🔤 আহোম বৰ্ণমালা (Consonants)</h1>", unsafe_with_html=True)
     
-    # সৰু ডাটাবেচ
     letters = [
         {"char": "𑜒", "name": "ক (Ka)"},
         {"char": "𑜓", "name": "খ (Kha)"},
