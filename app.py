@@ -48,7 +48,6 @@ Always be polite and helpful. Speak primarily in Assamese when explaining to the
 
 # --- OPTION 1: AI TRANSLATOR ---
 if choice == "🛕 টাই আহোম এআই দোভাষী (AI Translator)":
-    # ইয়াত আমি unsafe_allow_html ব্যৱহাৰ কৰিছোঁ যাতে এৰৰ নাহে
     st.markdown("<h1 class='title-text'>🛕 টাই আহোম এআই দোভাষী</h1>", unsafe_allow_html=True)
     st.write("অসমীয়া বা ইংৰাজীত যিকোনো বাক্য লিখক, আমাৰ AI-এ তাক টাই আহোম ভাষালৈ অনুবাদ কৰি বুজাই দিব!")
     
@@ -59,9 +58,9 @@ if choice == "🛕 টাই আহোম এআই দোভাষী (AI Trans
         if user_query:
             with st.spinner("আমাৰ AI দোভাষীয়ে চিন্তা কৰি আছে..."):
                 try:
-                    # Calling Gemini Model
+                    # ইয়াতে আমি 'models/gemini-1.5-flash' বুলি নামটো সঠিক ফৰ্মেটত দিছোঁ
                     model = genai.GenerativeModel(
-                        model_name="gemini-1.5-flash",
+                        model_name="models/gemini-1.5-flash",
                         system_instruction=SYSTEM_INSTRUCTION
                     )
                     response = model.generate_content(user_query)
@@ -89,7 +88,7 @@ elif choice == "🔤 আখৰ পৰিচয় (Alphabets)":
     for i, let in enumerate(letters):
         with cols[i]:
             st.markdown(f"<p class='ahom-text'>{let['char']}</p>", unsafe_allow_html=True)
-            st.markdown(f"<p style='text-align:center;'><b>উচ্চাৰণ:</b> {let['name']}</p>", unsafe_with_html=True)
+            st.markdown(f"<p style='text-align:center;'><b>উচ্চাৰণ:</b> {let['name']}</p>", unsafe_allow_html=True)
 
 # --- OPTION 3: DICTIONARY ---
 elif choice == "📚 শব্দকোষ (Dictionary)":
