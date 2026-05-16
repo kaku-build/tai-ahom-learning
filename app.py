@@ -6,9 +6,9 @@ st.set_page_config(page_title="Tai Ahom Learning Platform", page_icon="🛕", la
 
 # --- GEMINI AI SETUP ---
 # আপোনাৰ আচল API Key টো ইয়াত ছেট কৰা হৈছে
-API_KEY = "AIzaSyA6D895wPbpD69FEaV8AfMKcR7YvadVxks" 
+API_KEY = "AIzaSyAxUKnNcLVukUc7INVrCCJk-Og4fvb6Ohc" 
 
-if API_KEY and API_KEY != "AIzaSyA6D895wPbpD69FEaV8AfMKcR7YvadVxks":
+if API_KEY and API_KEY != "AIzaSyAxUKnNcLVukUc7INVrCCJk-Og4fvb6Ohc":
     genai.configure(api_key=API_KEY)
 else:
     st.error("অনুগ্ৰহ কৰি সঠিক Gemini API Key টো ব্যৱহাৰ কৰক!")
