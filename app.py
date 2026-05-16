@@ -6,7 +6,7 @@ st.set_page_config(page_title="Tai Ahom Learning Platform", page_icon="🛕", la
 
 # --- GEMINI AI SETUP ---
 # --- GEMINI AI SETUP ---
-API_KEY = "AIzaSyAxUKnNclVukUc7INVrCCJk-Og4fvb60hc"
+API_KEY = "AIzaSyBfLYJQbyy9iCHkiby9yrMfW1RXrPGetEw"
 
 if API_KEY:
     genai.configure(api_key=API_KEY)
