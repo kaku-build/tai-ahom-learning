@@ -5,10 +5,9 @@ import google.generativeai as genai
 st.set_page_config(page_title="Tai Ahom Learning Platform", page_icon="🛕", layout="wide")
 
 # --- GEMINI AI SETUP ---
-# আপোনাৰ আচল API Key টো ইয়াত ছেট কৰি দিয়া হৈছে
 API_KEY = "AIzaSyA6D895wPbpD69FEaV8AfMKcR7YvadVxks" 
 
-if API_KEY and API_KEY != "AIzaSyA6D895wPbpD69FEaV8AfMKcR7YvadVxks":
+if API_KEY and API_KEY != "আপোনাৰ_GEMINI_API_KEY_ইয়াত_পেষ্ট_কৰক":
     genai.configure(api_key=API_KEY)
 else:
     st.error("অনুগ্ৰহ কৰি সঠিক Gemini API Key টো ব্যৱহাৰ কৰক!")
@@ -49,7 +48,8 @@ Always be polite and helpful. Speak primarily in Assamese when explaining to the
 
 # --- OPTION 1: AI TRANSLATOR ---
 if choice == "🛕 টাই আহোম এআই দোভাষী (AI Translator)":
-    st.markdown("<h1 class='title-text'>🛕 টাই আহোম এআই দোভাষী</h1>", unsafe_with_html=True)
+    # ইয়াত আমি unsafe_allow_html ব্যৱহাৰ কৰিছোঁ যাতে এৰৰ নাহে
+    st.markdown("<h1 class='title-text'>🛕 টাই আহোম এআই দোভাষী</h1>", unsafe_allow_html=True)
     st.write("অসমীয়া বা ইংৰাজীত যিকোনো বাক্য লিখক, আমাৰ AI-এ তাক টাই আহোম ভাষালৈ অনুবাদ কৰি বুজাই দিব!")
     
     # User input box
@@ -72,11 +72,11 @@ if choice == "🛕 টাই আহোম এআই দোভাষী (AI Trans
                 except Exception as e:
                     st.error(f"এৰৰ আহিছে কাকু! হয়তো API Key বা নেটৱৰ্কৰ সমস্যা হৈছে। সবিশেষ: {e}")
         else:
-            st.warning("অনুগ্ৰহ কৰি কিবা Resume বা বাক্য টাইপ কৰক!")
+            st.warning("অনুগ্ৰহ কৰি কিবা এটা টাইপ কৰক!")
 
 # --- OPTION 2: ALPHABETS ---
 elif choice == "🔤 আখৰ পৰিচয় (Alphabets)":
-    st.markdown("<h1 class='title-text'>🔤 আহোম বৰ্ণমালা (Consonants)</h1>", unsafe_with_html=True)
+    st.markdown("<h1 class='title-text'>🔤 আহোম বৰ্ণমালা (Consonants)</h1>", unsafe_allow_html=True)
     
     letters = [
         {"char": "𑜒", "name": "ক (Ka)"},
@@ -88,12 +88,12 @@ elif choice == "🔤 আখৰ পৰিচয় (Alphabets)":
     cols = st.columns(4)
     for i, let in enumerate(letters):
         with cols[i]:
-            st.markdown(f"<p class='ahom-text'>{let['char']}</p>", unsafe_with_html=True)
+            st.markdown(f"<p class='ahom-text'>{let['char']}</p>", unsafe_allow_html=True)
             st.markdown(f"<p style='text-align:center;'><b>উচ্চাৰণ:</b> {let['name']}</p>", unsafe_with_html=True)
 
 # --- OPTION 3: DICTIONARY ---
 elif choice == "📚 শব্দকোষ (Dictionary)":
-    st.markdown("<h1 class='title-text'>📚 বুৰঞ্জীমূলক শব্দকোষ</h1>", unsafe_with_html=True)
+    st.markdown("<h1 class='title-text'>📚 বুৰঞ্জীমূলক শব্দকোষ</h1>", unsafe_allow_html=True)
     st.write("কিছুমান প্ৰয়োজনীয় টাই আহোম শব্দৰ অৰ্থ:")
     
     words = {
