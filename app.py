@@ -5,14 +5,13 @@ import google.generativeai as genai
 st.set_page_config(page_title="Tai Ahom Learning Platform", page_icon="🛕", layout="wide")
 
 # --- GEMINI AI SETUP ---
-# আপোনাৰ আচল API Key টো ইয়াত ছেট কৰা হৈছে
-API_KEY = "AIzaSyAxUKnNcLVukUc7INVrCCJk-Og4fvb6Ohc" 
+# --- GEMINI AI SETUP ---
+API_KEY = "AIzaSyAxUKnNclVukUc7INVrCCJk-Og4fvb60hc"
 
-if API_KEY and API_KEY != "AIzaSyAxUKnNcLVukUc7INVrCCJk-Og4fvb6Ohc":
+if API_KEY:
     genai.configure(api_key=API_KEY)
 else:
     st.error("অনুগ্ৰহ কৰি সঠিক Gemini API Key টো ব্যৱহাৰ কৰক!")
-
 # --- GOOGLE FONT (Noto Serif Ahom) & CSS ---
 st.markdown("""
 <style>
